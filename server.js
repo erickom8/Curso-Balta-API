@@ -21,10 +21,10 @@ app.use('/', route);
 
 server.listen(port);
 server.on('error', onError); //Quando acontece um 'error', chama a função 'onError'
-
+server.on('listening', onListening); //
 console.log('Server listening on port', port);
 
-function normalizePort(val) {
+function normalizePort(val) { //Normalizando a porta padrão
     const port = parseInt(val, 10);
 
     if (isNaN(port)) {
@@ -59,4 +59,12 @@ function onError(error) { // Tratativa de erro
         default:
             throw error;
     }    
+}
+
+function onListening(){
+    const addr = server.address();
+    const bind = typeof addr === 'string'
+      ? 'pipe ' + addr
+      : 'port ' + addr.port;
+    debug('Listening on' + bind);
 }
