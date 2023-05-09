@@ -10,7 +10,11 @@ const router = express.Router();
 //Conecta ao banco
 mongoose.connect('mongodb+srv://erickom:escirico22@cluster0.nwrg1mx.mongodb.net/?retryWrites=true&w=majority');
 
-const indexRoute = require('../src/Routes/index-route'); //Carrega as rotas
+//Carrega os Models
+const Product = require('./models/product');
+
+//Carrega as rotas
+const indexRoute = require('../src/Routes/index-route'); 
 const productRoute = require('../src/Routes/products-route');
 
 app.use(bodyParser.json()); //Todo o conteúdo convertido em json
